@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ---------- Database Model ----------
+// Database Model
 const donorSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
@@ -25,9 +25,9 @@ const donorSchema = new mongoose.Schema(
 
 const Donor = mongoose.model("Donor", donorSchema);
 
-// ---------- Routes ----------
+// Routes
 app.get("/", (req, res) => {
-  res.send("Blood Donor API is running 🚀");
+  res.send("Blood Donor API is running ");
 });
 
 app.get("/donors", async (req, res) => {
@@ -67,13 +67,13 @@ app.delete("/donors/:id", async (req, res) => {
   }
 });
 
-// ---------- Start ----------
+// Start
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB connected");
     app.listen(process.env.PORT, "0.0.0.0", () => {
-      console.log(`🚀 Server running on port ${process.env.PORT}`);
+      console.log(` Server running on port ${process.env.PORT}`);
     });
   })
-  .catch((err) => console.log("❌ DB error:", err.message));
+  .catch((err) => console.log("DB error:", err.message));
